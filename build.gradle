@@ -1,0 +1,85 @@
+buildscript {
+        ext {
+             //dependencies service
+            lombokVersion = '1.18.10'
+            validationApiVersion='2.0.1.Final'
+            modelMapperVersion='2.3.8'
+            swaggerVersion = '3.0.0'
+            sesionVersion= '1.3.5.RELEASE'
+            baseCommonVersion='1.0.0'
+            junitVersion='4.13.2'
+		    springBootVersion ='2.3.12.RELEASE'
+		    springSecurityVersion='2.4.4'	    
+		    jackSonDataFormat='2.10.2'
+		    jacksonCore='2.10.2'
+		    mongoDriverVersion ='3.12.1'
+		    mockitoVersion = '3.3.3'
+		    powerMockitoVersion = '1.7.4'
+		    mockitoall= '2.0.2-beta'
+		    log4jVersion='2.11.1'
+		    azureStorage='7.0.0'
+		    buddy= '1.10.20'
+		    keyValueVersion='3.0.0'
+		    sqlVersion='8.3.0.jre8-preview'
+		    springSecurityVersion='2.4.4'
+		    jsonwebtokenVersion='0.9.1'		   
+		    // component version settings
+		    releaseNumber = '1'
+		    sprintNumber = '0'
+		}
+		
+		repositories {
+		    mavenCentral()
+		    maven {
+      		   url "https://plugins.gradle.org/m2/"
+      	    }
+      	}
+		
+		dependencies {
+		    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		
+		}
+    }
+
+
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'java'
+
+
+apply from: 'service-dependencies.gradle'
+
+group = 'com.co.taxislibres.platform'
+version = "${releaseNumber}.${sprintNumber}-SNAPSHOT"
+sourceCompatibility = '11'
+
+repositories {
+	mavenLocal()
+	mavenCentral()
+	google()
+	maven { url "https://repo.spring.io/milestone" }
+
+}
+
+test {
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+dependencies {
+	implementation SPRING_BOOT_RUNTIME,LOMBOK,JACKSON,LOG4J2,SWAGGER,JPA_PERSISTENCE,REDIS,GENERAL
+	testImplementation LOMBOK,SPRING_BOOT_UT,MOCKING
+	
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.projectlombok:lombok'
+	runtimeOnly 'mysql:mysql-connector-java'
+	
+    //test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation 'io.projectreactor:reactor-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-commons:1.7.1'	
+   }

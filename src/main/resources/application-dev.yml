@@ -1,0 +1,51 @@
+spring:
+  datasource:
+    username: aplicaciones
+    password: OperativaClientes2014
+    url: "jdbc:mysql://104.154.251.174:3306/red_amarilla_pruebas?useSSL=false"
+    hikari:
+      maximum-pool-size: 5
+      connection-timeout: 15000
+      idle-timeout: 300000
+      max-lifetime: 900000
+  jpa:
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+        event:
+          merge:
+            entity_copy_observer: allow
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        dialect: org.hibernate.dialect.MySQL55Dialect
+        jdbc:
+          batch_size: 20
+          lob:
+            non_contextual_creation: true
+          cache:
+            use_query_cache: true
+            use_second_level_cache: true
+            use_structured_entries: true
+            use_minimal_puts: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+  redis:
+    password: ${REDIS_PASSWORD:123456}
+    host: ${REDIS_HOST:192.168.20.100}
+    port: ${REDIS_PORT:16379}
+    timeout: 60000
+    database: 0
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+server:
+  port : 9001
+  servlet:
+    context-path: /management-sesions/v1
