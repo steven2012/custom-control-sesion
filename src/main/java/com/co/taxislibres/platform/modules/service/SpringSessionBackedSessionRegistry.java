@@ -1,6 +1,7 @@
 //package com.co.taxislibres.platform.modules.service;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Bean;
 //import org.springframework.security.core.session.SessionInformation;
 //import org.springframework.security.core.session.SessionRegistry;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -30,10 +31,10 @@
 //@Component
 //public class SpringSessionBackedSessionRegistry implements SessionRegistry {
 //
+//	@Autowired
 //    private FindByIndexNameSessionRepository<? extends ExpiringSession> sessionRepository;
 //
-//    @SuppressWarnings("SpringJavaAutowiringInspection")
-//    @Autowired
+//	   
 //    public SpringSessionBackedSessionRegistry(FindByIndexNameSessionRepository<? extends ExpiringSession> sessionRepository) {
 //        this.sessionRepository = sessionRepository;
 //    }

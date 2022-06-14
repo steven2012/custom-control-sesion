@@ -9,15 +9,18 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
+
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 
 	@Autowired
-	private UserDetailsService jwtUserDetailsService;
+	private CustomUserDetailImpl jwtUserDetailsService;
 	
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -35,13 +38,17 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
            }
     
            Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
-    
+           log.info("authenticate"+ "ingresó");
            return new UsernamePasswordAuthenticationToken(user, password, authorities);
 	}
 
 	@Override
 	public boolean supports(Class<?> authentication) {
+//		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
+		log.info("authenticate boolean");
+
 		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
+
 	}
 
 

@@ -9,7 +9,7 @@ buildscript {
             baseCommonVersion='1.0.0'
             junitVersion='4.13.2'
 		    springBootVersion ='2.3.12.RELEASE'
-		    springSecurityVersion='2.4.4'	    
+		    springSecurityVersion='2.7.0'	    
 		    jackSonDataFormat='2.10.2'
 		    jacksonCore='2.10.2'
 		    mongoDriverVersion ='3.12.1'

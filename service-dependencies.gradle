@@ -8,7 +8,7 @@ ext {
         [group: 'org.springframework.boot', name: 'spring-boot-starter-validation'],
         [group: 'org.apache.commons', name: 'commons-pool2', version: '2.6.0'],
         [group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springSecurityVersion],
-       // [group: 'org.springframework.session', name: 'spring-session', version:sesionVersion],
+        [group: 'org.springframework.session', name: 'spring-session', version:sesionVersion],
         [group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf']
         
     ]
@@ -50,6 +50,8 @@ ext {
     REDIS=[
        [group: 'org.springframework.boot', name: 'spring-boot-starter-cache'],
        [group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis']
+       //[group: 'org.springframework.session', name: 'spring-session-data-redis']
+       
     ]
     
     SWAGGER = [
