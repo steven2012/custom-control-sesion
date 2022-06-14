@@ -32,8 +32,7 @@ public class CustomUserDetailImpl implements CustomUserDetailsService  {
 		}	
 		
 		var userEntity= user.get();
-		return new UserSesion(userEntity.getId(), userEntity.getEmail(), true, true, true, true, new ArrayList<>());
-//		return new User(userEntity.getId(), userEntity.getEmail(), new ArrayList<>());
+		return new User(userEntity.getId(), userEntity.getEmail(), new ArrayList<>());
 	
 	}
 

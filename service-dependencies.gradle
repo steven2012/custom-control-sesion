@@ -8,7 +8,7 @@ ext {
         [group: 'org.springframework.boot', name: 'spring-boot-starter-validation'],
         [group: 'org.apache.commons', name: 'commons-pool2', version: '2.6.0'],
         [group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: springSecurityVersion],
-       // [group: 'org.springframework.session', name: 'spring-session', version:sesionVersion],
+        [group: 'org.springframework.session', name: 'spring-session-core'],
         [group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf']
         
     ]
@@ -49,7 +49,8 @@ ext {
     
     REDIS=[
        [group: 'org.springframework.boot', name: 'spring-boot-starter-cache'],
-       [group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis']
+       [group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'],
+       [group: 'org.springframework.session', name: 'spring-session-data-redis']
     ]
     
     SWAGGER = [
@@ -59,7 +60,8 @@ ext {
     
     GENERAL = [
         [group: 'org.modelmapper', name: 'modelmapper', version: modelMapperVersion],
-        [group: 'com.google.guava', name: 'guava', version: '31.0.1-jre']
+        [group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'],
+        [group: 'org.apache.commons', name: 'commons-pool2']
 
     ]	    
     
