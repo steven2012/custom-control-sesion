@@ -2,13 +2,12 @@
 //
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
-//import org.springframework.context.annotation.Bean;
 //import org.springframework.security.core.context.SecurityContext;
 //import org.springframework.security.core.session.SessionInformation;
-//import org.springframework.security.core.session.SessionRegistry;
 //import org.springframework.session.ExpiringSession;
 //import org.springframework.session.Session;
 //import org.springframework.session.SessionRepository;
+//import org.springframework.stereotype.Component;
 //
 //import java.util.Date;
 //
