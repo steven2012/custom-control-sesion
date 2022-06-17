@@ -15,12 +15,17 @@ import org.springframework.stereotype.Component;
 
 import com.co.taxislibres.platform.crosscutting.persistence.repository.DriverRepository;
 
+
 @Component
 public class CustomUserDetailImpl implements CustomUserDetailsService  {
 
  
 	@Autowired
 	private DriverRepository driverRepository;
+	
+	 @Autowired 
+    private SpringSessionBackedSessionRegistry sessionRegistry;
+	
 	/**
 	 * This method verify credential to access Api wiht token, before consumer
 	 * endpoints
@@ -31,9 +36,9 @@ public class CustomUserDetailImpl implements CustomUserDetailsService  {
 		var user=driverRepository.findById(idUsuario);
 		
 		if(!user.isPresent()) {
-			return null;
+			throw new UsernameNotFoundException("No existe información para las credenciales brindadas");
 		}	
-		
+	
 		var userEntity= user.get();
 		return new User(userEntity.getId(), new BCryptPasswordEncoder().encode(userEntity.getEmail()), true, true, true, true, getAuthorities());
 	}
