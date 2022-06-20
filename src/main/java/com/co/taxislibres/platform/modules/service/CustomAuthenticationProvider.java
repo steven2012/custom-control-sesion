@@ -36,17 +36,16 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
            if (!password.equals(user.getPassword())) {
                throw new BadCredentialsException("Wrong password.");
            }
-    
+               
            Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
            log.info("authenticate"+ "ingresó");
            return new UsernamePasswordAuthenticationToken(user, password, authorities);
 	}
 
 	@Override
-	public boolean supports(Class<?> authentication) {
+	public boolean supports(Class<? extends Object> authentication) {
 		log.info("authenticate boolean");
 		return (UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication));
-
 	}
 
 

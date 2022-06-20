@@ -4,12 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+//import org.springframework.session.data.redis.RedisIndexedSessionRepository;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -33,9 +37,10 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             CustomAuthenticationToken authRequest = getAuthRequest(request);
             setDetails(request, authRequest);
             var auth=this.getAuthenticationManager().authenticate(authRequest);
-           
 //            if( auth.isAuthenticated()) {
 //            	String sesion= request.getRequestedSessionId();
+//                sessionRedisTemplate.boundHashOps("spring:session:sessions:" + sesion).put("maxInactiveInterval", 60);
+//
 //           }
             return auth		;
     	}catch(Exception ex) {

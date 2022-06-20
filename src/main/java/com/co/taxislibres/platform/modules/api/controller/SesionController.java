@@ -17,6 +17,8 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.session.ExpiringSession;
 import org.springframework.session.FindByIndexNameSessionRepository;
+//import org.springframework.session.ExpiringSession;
+//import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
@@ -24,12 +26,15 @@ import static org.springframework.session.FindByIndexNameSessionRepository.PRINC
 
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.co.taxislibres.platform.modules.service.CustomUserDetailsService;
 
 import io.swagger.annotations.Api;
 
@@ -52,7 +57,8 @@ public class SesionController {
         model.addAttribute("currSessionId", session.getId());
         return "index";
     }	
-	
+    
+
 	
 //	@GetMapping("/")
 //	public String home(Model model, HttpSession session) {

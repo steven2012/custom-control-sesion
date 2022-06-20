@@ -50,5 +50,6 @@ server:
   port : 9001
   servlet:
     context-path: /management-sesions/v1
-session.store-type: redis
+spring.session.store-type: redis
+spring.session.redis.flush-mode: IMMEDIATE
 spring.main.allow-bean-definition-overriding: true

@@ -1,6 +1,7 @@
 package com.co.taxislibres.platform.infrastructure.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -10,15 +11,23 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
+//import org.springframework.session.ExpiringSession;
 
 import com.co.taxislibres.platform.modules.service.CustomAuthenticationFilter;
 import com.co.taxislibres.platform.modules.service.CustomUserDetailsAuthenticationProvider;
 import com.co.taxislibres.platform.modules.service.CustomUserDetailsService;
 import com.co.taxislibres.platform.modules.service.SpringSessionBackedSessionRegistry;
+
+//import com.co.taxislibres.platform.modules.service.CustomAuthenticationFilter;
+//import com.co.taxislibres.platform.modules.service.CustomUserDetailsAuthenticationProvider;
+//import com.co.taxislibres.platform.modules.service.CustomUserDetailsService;
+//import com.co.taxislibres.platform.modules.service.SpringSessionBackedSessionRegistry;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,19 +40,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomUserDetailsService jwtUserDetailsService;
 	
-    @Autowired 
+	
+	@Autowired 
     private SpringSessionBackedSessionRegistry sessionRegistry;
-
-    
+//
+//    
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
-
+//	
+//
 	@Bean
 	public SavedRequestAwareAuthenticationSuccessHandler successHandler() {
 	    SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+	    log.info("mire papito-------------------------------------");
 	    successHandler.setTargetUrlParameter("/helloworld");
 	    return successHandler;
 	}
@@ -60,7 +71,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public AuthenticationProvider authenticationProvider(CustomUserDetailsService jwtUserDetailsService) {
 		return new CustomUserDetailsAuthenticationProvider(passwordEncoder(), jwtUserDetailsService);
 	}
-
+	
 	public CustomAuthenticationFilter authenticationFilter() throws Exception {
 		CustomAuthenticationFilter filter = new CustomAuthenticationFilter();
 		filter.setAuthenticationManager(authenticationManagerBean());
@@ -81,6 +92,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+    
+    @Bean
+    public HttpSessionEventPublisher httpSessionEventPublisher() {
+        return new HttpSessionEventPublisher();
     }
     
 	@Override

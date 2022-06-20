@@ -61,7 +61,7 @@ public class SpringSessionBackedSessionInformation extends SessionInformation {
         logger.debug("Deleting session {} for user '{}', presumably because max concurrent sessions was reached",
                 getSessionId(), getPrincipal());
         super.expireNow();
-        sessionRepository.delete(getSessionId());
+        sessionRepository.deleteById(getSessionId());
     }
 
 }

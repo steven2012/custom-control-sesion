@@ -1,7 +1,6 @@
 package com.co.taxislibres.platform.modules.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -9,7 +8,6 @@ import org.springframework.session.ExpiringSession;
 import org.springframework.session.FindByIndexNameSessionRepository;
 import org.springframework.stereotype.Component;
 
-import com.co.taxislibres.platform.infrastructure.configuration.WebSecurityConfig;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -51,6 +49,8 @@ public class SpringSessionBackedSessionRegistry implements SessionRegistry {
 
     @Override
     public List<SessionInformation> getAllSessions(Object principal, boolean includeExpiredSessions) {
+    	
+    	var s=principal;
     	return sessionRepository
                 .findByIndexNameAndIndexValue(PRINCIPAL_NAME_INDEX_NAME, name(principal))
                 .values()
@@ -62,7 +62,7 @@ public class SpringSessionBackedSessionRegistry implements SessionRegistry {
 
     @Override
     public SessionInformation getSessionInformation(String sessionId) {
-        ExpiringSession session = sessionRepository.getSession(sessionId) ;
+        ExpiringSession session = sessionRepository.findById(sessionId) ;
         if (session != null) {
             return new SpringSessionBackedSessionInformation(session, sessionRepository);
         }
